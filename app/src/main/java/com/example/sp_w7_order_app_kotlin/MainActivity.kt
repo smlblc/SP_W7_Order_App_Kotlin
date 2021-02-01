@@ -4,63 +4,65 @@ import android.annotation.SuppressLint
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
-import android.view.View
 import android.widget.*
 
 class MainActivity : AppCompatActivity() {
 
     private var whipedcream: Boolean = false
     private var chocolatechecked: Boolean = false
-    private var textView: TextView? = null
-    private var button1: Button? = null
-    private var button2: Button? = null
-    private var order: Button? = null
-    private var cream: CheckBox? = null
-    private var chocolate: CheckBox? = null
+
+    private var textView_ItemAmount: TextView? = null
+    private var button_Plus: Button? = null
+    private var button_Minus: Button? = null
+    private var button_Order: Button? = null
+    private var checkBox_Cream: CheckBox? = null
+    private var checkBox_Chocolate: CheckBox? = null
+
     private var count: Int = 0
-    private var reciept: TextView? = null
-    private var toppings: TextView? = null
-    private var editText: TextView? = null
+
+    private var textView_Reciept: TextView? = null
+    private var textView_Toppings: TextView? = null
+    private var editText_CustomerName: TextView? = null
 
     @SuppressLint("SetTextI18n")
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        button1 = findViewById<Button>(R.id.plus)
-        textView = findViewById<TextView>(R.id.amount)
-        button2 = findViewById<Button>(R.id.minus)
-        cream = findViewById<CheckBox>(R.id.whipped_cream)
-        chocolate = findViewById<CheckBox>(R.id.chocolate)
-        order = findViewById<Button>(R.id.order)
-        reciept = findViewById<TextView>(R.id.reciept)
-        editText = findViewById<TextView>(R.id.name_text)
-        toppings = findViewById<TextView>(R.id.toppings)
+        button_Plus = findViewById<Button>(R.id.plus)
+        textView_ItemAmount = findViewById<TextView>(R.id.amount)
+        button_Minus = findViewById<Button>(R.id.minus)
+        checkBox_Cream = findViewById<CheckBox>(R.id.whipped_cream)
+        checkBox_Chocolate = findViewById<CheckBox>(R.id.chocolate)
+        button_Order = findViewById<Button>(R.id.order)
+        textView_Reciept = findViewById<TextView>(R.id.reciept)
+        editText_CustomerName = findViewById<TextView>(R.id.name_text)
+        textView_Toppings = findViewById<TextView>(R.id.toppings)
 
-        button1?.setOnClickListener {
+        button_Plus?.setOnClickListener {
             count++
-            textView?.text = count.toString()
+            textView_ItemAmount?.text = count.toString()
         }
 
-        button2?.setOnClickListener {
+        button_Minus?.setOnClickListener {
             if (count > 0) {
                 count--
-                textView?.text = count.toString()
+                textView_ItemAmount?.text = count.toString()
             }
         }
 
-        cream?.setOnCheckedChangeListener { buttonView: CompoundButton?, isChecked: Boolean ->
+        checkBox_Cream?.setOnCheckedChangeListener { buttonView: CompoundButton?, isChecked: Boolean ->
                     Log.d("Myapp", "Status of checkbox" + isChecked)
                     whipedcream = isChecked
                 }
 
 
-        chocolate?.setOnCheckedChangeListener { buttonView: CompoundButton?, isChecked: Boolean ->
+        checkBox_Chocolate?.setOnCheckedChangeListener { buttonView: CompoundButton?, isChecked: Boolean ->
                     Log.d("Myapp", "Status of checkbox" + isChecked)
                     chocolatechecked = isChecked
         }
 
-        order?.setOnClickListener {
+        button_Order?.setOnClickListener {
                     var total: Int = 0
                     if (whipedcream) {
                         total += 10
@@ -70,11 +72,11 @@ class MainActivity : AppCompatActivity() {
                     }
                     total = total * count
 
-            reciept?.text = "ORDER SUMMARY " +
-                    "\n Person ${editText?.text} " +
+            textView_Reciept?.text = "ORDER SUMMARY " +
+                    "\n Person ${editText_CustomerName?.text} " +
                     "\n Add wipped cream? : $whipedcream" +
                     "\n Add chocolate? : $chocolatechecked" +
-                    "\n Quantity: ${textView?.text}" +
+                    "\n Quantity: ${textView_ItemAmount?.text}" +
                     "\n Total: $total$ " +
                     "\n Thank you!!! "
                 }
