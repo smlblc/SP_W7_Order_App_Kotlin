@@ -70,15 +70,13 @@ class MainActivity : AppCompatActivity() {
                     }
                     total = total * count
 
-                    reciept?.setText(
-                        "ORDER SUMMARY " +
-                                "\n Person ${editText?.text} " +
-                                "\n Add wipped cream? : $whipedcream" +
-                                "\n Add chocolate? : $chocolatechecked" +
-                                "\n Quantity: ${textView?.text}" +
-                                "\n Total: $total$ " +
-                                "\n Thank you!!! "
-                    )
+            reciept?.text = "ORDER SUMMARY " +
+                    "\n Person ${editText?.text} " +
+                    "\n Add wipped cream? : $whipedcream" +
+                    "\n Add chocolate? : $chocolatechecked" +
+                    "\n Quantity: ${textView?.text}" +
+                    "\n Total: $total$ " +
+                    "\n Thank you!!! "
                 }
     }
 }
