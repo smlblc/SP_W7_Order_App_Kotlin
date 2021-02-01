@@ -22,6 +22,7 @@ class MainActivity : AppCompatActivity() {
     private var toppings: TextView? = null
     private var editText: TextView? = null
 
+    @SuppressLint("SetTextI18n")
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
@@ -38,13 +39,13 @@ class MainActivity : AppCompatActivity() {
 
         button1?.setOnClickListener {
             count++
-            textView?.setText(count.toString())
+            textView?.text = count.toString()
         }
 
         button2?.setOnClickListener {
             if (count > 0) {
                 count--
-                textView?.setText(count.toString())
+                textView?.text = count.toString()
             }
         }
 
